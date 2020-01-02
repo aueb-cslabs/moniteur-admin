@@ -7,8 +7,8 @@
   },
   "private": true,
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/aueb-cslabs/moniteur.git"
+    "type": "git",
+    "url": "https://github.com/aueb-cslabs/moniteur-admin.git"
   },
   "homepage": "https://cslab.aueb.gr",
   "main": "background.js",
