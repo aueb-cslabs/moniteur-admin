@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/aueb-cslabs/moniteur.svg?branch=master)](https://travis-ci.com/aueb-cslabs/moniteur) 
+[![Build Status](https://travis-ci.com/aueb-cslabs/moniteur-admin.svg?branch=master)](https://travis-ci.com/aueb-cslabs/moniteur-admin)
 [![dependencies Status](https://david-dm.org/aueb-cslabs/moniteur-admin/status.svg)](https://david-dm.org/aueb-cslabs/moniteur-admin)
 [![devDependencies Status](https://david-dm.org/aueb-cslabs/moniteur-admin/dev-status.svg)](https://david-dm.org/aueb-cslabs/moniteur-admin?type=dev) 
 
