@@ -4,14 +4,14 @@ matrix:
     language: node_js
     node_js: '10'
     script:
-    - make publish-admin-linux
+    - make .publish-admin-linux
   - os: windows
     language: node_js
     node_js: '10'
     before_install:
     - choco install -y make
     script:
-    - make publish-admin-win
+    - make .publish-admin-win
 cache:
   directories:
   - node_modules
