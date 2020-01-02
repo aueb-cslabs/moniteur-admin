@@ -12,14 +12,6 @@ matrix:
     - choco install -y make
     script:
     - make publish-win
-  - os: linux
-    language: go
-    go:
-    - '1.12'
-    script:
-    - make .build-go
-    env:
-    - GO111MODULE=on
 cache:
   directories:
   - node_modules

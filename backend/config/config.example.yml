@@ -1,3 +1,0 @@
-plugin: bin/name-of-plugin.so
-exams: link-of-exams.xlsx
-secret: changethesecret
