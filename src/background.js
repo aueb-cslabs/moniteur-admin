@@ -4,6 +4,8 @@ import { app, protocol, BrowserWindow } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import fs from "fs";
 import yaml from 'js-yaml';
+const { autoUpdater } = require("electron-updater");
+
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -59,6 +61,9 @@ app.on('ready', async () => {
   checkAppData();
   loadConfig();
   createWindow();
+
+  // Check for updates
+  await autoUpdater.checkForUpdatesAndNotify();
 })
 
 // Exit cleanly on request from parent process in development mode.
