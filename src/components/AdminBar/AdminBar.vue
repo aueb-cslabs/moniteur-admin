@@ -12,6 +12,7 @@
                  alt="cs_logo" height="60" />
         </a>
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item pr-2">Version {{version}}</li>
             <li class="nav-item pr-3 d-none d-sm-block" v-if="this.$root.$data.authToken.auth">{{$t("message.adminBarLI")}} {{this.$root.$data.authToken.username}}</li>
             <li class="nav-item" v-on:click="logout">{{$t("message.adminBarLogout")}}</li>
         </ul>
@@ -23,6 +24,7 @@
     import functions from "../../functions";
 
     const config = require('electron').remote.getGlobal('config');
+    const app = require('electron').remote.app;
 
     export default {
         name: 'AdminBar',
@@ -35,7 +37,8 @@
             return {
                 username: '',
                 logo_url: config.logo_url,
-                secondary_logo_url: config.secondary_logo_url
+                secondary_logo_url: config.secondary_logo_url,
+                version: app.getVersion()
             }
         },
 
