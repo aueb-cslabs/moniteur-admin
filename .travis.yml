@@ -21,6 +21,8 @@ matrix:
        -v ~/.cache/electron-builder:/root/.cache/electron-builder \
         electronuserland/builder:wine \
         /bin/bash -c "make .publish-admin-win"
+    after_success:
+      - sudo chmod 755 $TRAVIS_BUILD_DIR/dist_electron/moniteur-admin-*
 
 cache:
   directories:
