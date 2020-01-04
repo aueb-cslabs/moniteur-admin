@@ -10,6 +10,8 @@ matrix:
     node_js: '10'
     before_install:
     - choco install -y make
+    before_cache:
+      - rmdir $HOME\AppData\Local\electron-builder\Cache /S /Q
     script:
     - make .publish-admin-win
 cache:
