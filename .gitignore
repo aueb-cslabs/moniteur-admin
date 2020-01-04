@@ -26,6 +26,9 @@ yarn-error.log*
 node_modules
 /dist
 
+# Github OAuth token
+token
+
 # local env files
 # .env.local
 # .env.*.local
