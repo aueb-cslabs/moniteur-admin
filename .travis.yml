@@ -5,6 +5,8 @@ matrix:
     node_js: '10'
     script:
     - make .publish-admin-linux
+    after_success:
+      - sudo chmod 755 $TRAVIS_BUILD_DIR/dist_electron/moniteur-admin-*
   - os: linux
     services: docker
     language: node_js
