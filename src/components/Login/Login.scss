@@ -3,6 +3,23 @@ body {
     width: 85%;
   }
 
+  .setbut {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 15px;
+    margin-left: 15px;
+  }
+  
+  .logset {
+    height: 100%;
+    width: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+
   .error {
     position: absolute;
     width: 400px;

@@ -1,27 +1,32 @@
 <template>
-    <div class="form">
-        <p>{{ $t("message.loginWelcome") }}</p>
-        <form @submit="checkLogin">
-            <div class="form-group">
-                <input type="text" class="form-control" id="username" v-model="loginForm.username" v-bind:placeholder="this.$t('message.loginUsername')">
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" id="password" v-model="loginForm.password" v-bind:placeholder="this.$t('message.loginPassword')">
-            </div>
-            <button @click="checkLogin" class="btn btn-primary">{{$t("message.loginSignIn")}}</button>
-        </form>
-        <ErrorPopup ref="error"/>
+    <div id="logset" class="logset">
+        <div class="form" v-if="!showSet">
+            <p>{{ $t("message.loginWelcome") }}</p>
+            <form @submit="checkLogin">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="username" v-model="loginForm.username" v-bind:placeholder="this.$t('message.loginUsername')">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="password" v-model="loginForm.password" v-bind:placeholder="this.$t('message.loginPassword')">
+                </div>
+                <button @click="checkLogin" class="btn btn-primary">{{$t("message.loginSignIn")}}</button>
+            </form>
+            <ErrorPopup ref="error"/>
+        </div>
+        <Settings v-if="showSet"/>
+        <button class="btn btn-dark setbut" v-on:click="changeSet">{{$t("message.adminBarSettings")}}</button>
     </div>
 </template>
 
 <script>
     import axios from "axios";
     import ErrorPopup from "../ErrorPopup/ErrorPopup";
+    import Settings from "../Settings/Settings";
 
     const config = require('electron').remote.getGlobal('config');
 
     export default {
-        components: {ErrorPopup},
+        components: {Settings, ErrorPopup},
         data() {
             return {
                 loginForm: {
@@ -32,6 +37,7 @@
                     Username: '',
                     Authorization: ''
                 },
+                showSet: false
             }
         },
 
@@ -82,6 +88,10 @@
                 }
                 this.login();
                 e.preventDefault();
+            },
+
+            changeSet: function () {
+                this.showSet = !this.showSet;
             }
         }
     }

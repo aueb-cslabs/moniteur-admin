@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="w-100">
         <div class="pt-5">
             <h2>{{$t("message.adminBarSettings")}}</h2>
             <div class="pt-3">
