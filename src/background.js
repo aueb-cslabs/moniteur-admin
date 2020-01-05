@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 import { app, protocol, BrowserWindow } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
@@ -6,30 +6,30 @@ import fs from "fs";
 import yaml from 'js-yaml';
 const { autoUpdater } = require("electron-updater");
 
-const isDevelopment = process.env.NODE_ENV !== 'production'
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
-autoUpdater.logger = require("electron-log")
-autoUpdater.logger.transports.file.level = "info"
+autoUpdater.logger = require("electron-log");
+autoUpdater.logger.transports.file.level = "info";
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let win
+let win;
 
 // Scheme must be registered before the app is ready
-protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: { secure: true, standard: true } }])
+protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: { secure: true, standard: true } }]);
 
 function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({ width: 800, height: 600, autoHideMenuBar: true, webPreferences: {
     nodeIntegration: true
-  } })
+  } });
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
-    win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
+    win.loadURL(process.env.WEBPACK_DEV_SERVER_URL);
     if (!process.env.IS_TEST) win.webContents.openDevTools()
   } else {
-    createProtocol('app')
+    createProtocol('app');
     // Load the index.html when not in development
     win.loadURL('app://./index.html');
     win.maximize();
@@ -47,7 +47,7 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
-})
+});
 
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
@@ -55,7 +55,7 @@ app.on('activate', () => {
   if (win === null) {
     createWindow()
   }
-})
+});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -67,7 +67,7 @@ app.on('ready', async () => {
 
   // Check for updates
   await autoUpdater.checkForUpdatesAndNotify();
-})
+});
 
 // Exit cleanly on request from parent process in development mode.
 if (isDevelopment) {
@@ -85,13 +85,24 @@ if (isDevelopment) {
 }
 
 function checkAppData() {
+  let finalConfig = null;
   if (!fs.existsSync(app.getPath('userData')+"/config.yml")) {
     fs.openSync(app.getPath('userData')+'/config.yml', 'w');
-    let config = yaml.safeLoad(fs.readFileSync(process.cwd()+'/config/config.yml', 'utf8'));
-    fs.writeFileSync(app.getPath('userData')+'/config.yml', yaml.safeDump(config), function(err) {
-      if (err) return err;
-    });
+    finalConfig = yaml.safeLoad(fs.readFileSync(process.cwd()+'/config/config.yml', 'utf8'));
   }
+  else {
+    finalConfig = yaml.safeLoad(fs.readFileSync(app.getPath('userData')+'/config.yml', 'utf-8'));
+    let finalConfigKeys = Object.keys(finalConfig);
+    let config = yaml.safeLoad(fs.readFileSync(process.cwd()+'/config/config.yml', 'utf8'));
+    for (let i in config) {
+      if (!finalConfigKeys.includes(i.toString())) {
+        finalConfig[i.toString()] = config[i.toString()];
+      }
+    }
+  }
+  fs.writeFileSync(app.getPath('userData')+'/config.yml', yaml.safeDump(finalConfig), function(err) {
+    if (err) return err;
+  });
 }
 
 function loadConfig() {
