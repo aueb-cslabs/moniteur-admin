@@ -66,7 +66,11 @@ app.on('ready', async () => {
   createWindow();
 
   // Check for updates
-  await autoUpdater.checkForUpdatesAndNotify();
+  try {
+    await autoUpdater.checkForUpdatesAndNotify();
+  } catch (e) {
+      autoUpdater.logger.log("Error occurred while calling update! " + e);
+  }
 });
 
 // Exit cleanly on request from parent process in development mode.
