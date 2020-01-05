@@ -17,7 +17,10 @@ module.exports = {
                     "artifactName": "moniteur-admin-Setup-v${version}.${ext}",
                 },
                 "extraFiles": [
-                    "config/*"
+                    {
+                        "from": "config/config.yml",
+                        "to": "config.yml"
+                    }
                 ],
                 "publish": [
                     {
