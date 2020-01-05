@@ -98,10 +98,16 @@ if (isDevelopment) {
 }
 
 function checkAppData() {
-  let p = path.parse(app.getPath("exe"));
+  /**
+   * let execPath = app.getPath("exe") returns the
+   * path of the executable file. With execPath.dir we get
+   * only the directory. Adding the "/config.yml" we are able to load
+   * the config in both platforms.
+   */
+  let execPath = path.parse(app.getPath("exe"));
   if (!fs.existsSync(app.getPath('userData')+"/config.yml")) {
     fs.openSync(app.getPath('userData')+'/config.yml', 'w');
-    let finalConfig = yaml.safeLoad(fs.readFileSync(p.dir +'/config.yml', 'utf8'));
+    let finalConfig = yaml.safeLoad(fs.readFileSync(execPath.dir +'/config.yml', 'utf8'));
     fs.writeFileSync(app.getPath('userData')+'/config.yml', yaml.safeDump(finalConfig), function(err) {
       if (err) return err;
     });
@@ -109,7 +115,7 @@ function checkAppData() {
   else {
     let finalConfig = yaml.safeLoad(fs.readFileSync(app.getPath('userData')+'/config.yml', 'utf-8'));
     let finalConfigKeys = Object.keys(finalConfig);
-    let config = yaml.safeLoad(fs.readFileSync(p.dir + '/config.yml', 'utf8'));
+    let config = yaml.safeLoad(fs.readFileSync(execPath.dir + '/config.yml', 'utf8'));
     for (let i in config) {
       if (!finalConfigKeys.includes(i.toString())) {
         finalConfig[i.toString()] = config[i.toString()];
