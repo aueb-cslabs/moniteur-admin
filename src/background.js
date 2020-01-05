@@ -92,12 +92,12 @@ function checkAppData() {
   let finalConfig = null;
   if (!fs.existsSync(app.getPath('userData')+"/config.yml")) {
     fs.openSync(app.getPath('userData')+'/config.yml', 'w');
-    finalConfig = yaml.safeLoad(fs.readFileSync(__dirname + '/config/config.yml', 'utf8'));
+    finalConfig = yaml.safeLoad(fs.readFileSync(process.cwd()+'/config/config.yml', 'utf8'));
   }
   else {
     finalConfig = yaml.safeLoad(fs.readFileSync(app.getPath('userData')+'/config.yml', 'utf-8'));
     let finalConfigKeys = Object.keys(finalConfig);
-    let config = yaml.safeLoad(fs.readFileSync(__dirname + '/config/config.yml', 'utf8'));
+    let config = yaml.safeLoad(fs.readFileSync(process.cwd()+'/config/config.yml', 'utf8'));
     for (let i in config) {
       if (!finalConfigKeys.includes(i.toString())) {
         finalConfig[i.toString()] = config[i.toString()];
@@ -112,8 +112,8 @@ function checkAppData() {
 function loadConfig() {
   try {
     global.config = yaml.safeLoad(fs.readFileSync(app.getPath('userData')+'/config.yml', 'utf8'));
-    // eslint-disable-next-line no-empty
+    // eslint-disable-next-line no-console
   } catch (e) {
-
+    // eslint-disable-next-line no-console
   }
 }
