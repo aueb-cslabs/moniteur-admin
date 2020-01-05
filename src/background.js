@@ -5,6 +5,7 @@ import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import fs from "fs";
 import yaml from 'js-yaml';
 const { autoUpdater } = require("electron-updater");
+const path = require('path');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -49,6 +50,14 @@ app.on('window-all-closed', () => {
   }
 });
 
+// SSL/TSL: this is the self signed certificate support
+app.on('certificate-error', (event, webContents, url, error, certificate, callback) => {
+    // On certificate error we disable default behaviour (stop loading the page)
+    // and we then say "it is all fine - true" to the callback
+    event.preventDefault();
+    callback(true);
+});
+
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
@@ -89,24 +98,33 @@ if (isDevelopment) {
 }
 
 function checkAppData() {
-  let finalConfig = null;
+  /**
+   * let execPath = app.getPath("exe") returns the
+   * path of the executable file. With execPath.dir we get
+   * only the directory. Adding the "/config.yml" we are able to load
+   * the config in both platforms.
+   */
+  let execPath = path.parse(app.getPath("exe"));
   if (!fs.existsSync(app.getPath('userData')+"/config.yml")) {
     fs.openSync(app.getPath('userData')+'/config.yml', 'w');
-    finalConfig = yaml.safeLoad(fs.readFileSync(process.cwd()+'/config/config.yml', 'utf8'));
+    let finalConfig = yaml.safeLoad(fs.readFileSync(execPath.dir +'/config.yml', 'utf8'));
+    fs.writeFileSync(app.getPath('userData')+'/config.yml', yaml.safeDump(finalConfig), function(err) {
+      if (err) return err;
+    });
   }
   else {
-    finalConfig = yaml.safeLoad(fs.readFileSync(app.getPath('userData')+'/config.yml', 'utf-8'));
+    let finalConfig = yaml.safeLoad(fs.readFileSync(app.getPath('userData')+'/config.yml', 'utf-8'));
     let finalConfigKeys = Object.keys(finalConfig);
-    let config = yaml.safeLoad(fs.readFileSync(process.cwd()+'/config/config.yml', 'utf8'));
+    let config = yaml.safeLoad(fs.readFileSync(execPath.dir + '/config.yml', 'utf8'));
     for (let i in config) {
       if (!finalConfigKeys.includes(i.toString())) {
         finalConfig[i.toString()] = config[i.toString()];
       }
     }
+    fs.writeFileSync(app.getPath('userData')+'/config.yml', yaml.safeDump(finalConfig), function(err) {
+      if (err) return err;
+    });
   }
-  fs.writeFileSync(app.getPath('userData')+'/config.yml', yaml.safeDump(finalConfig), function(err) {
-    if (err) return err;
-  });
 }
 
 function loadConfig() {
