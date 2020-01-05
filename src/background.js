@@ -89,24 +89,34 @@ if (isDevelopment) {
 }
 
 function checkAppData() {
-  let finalConfig = null;
+  let platform;
+  if (process.platform === 'win32') {
+    platform = process.cwd();
+  } else {
+    platform = __dirname;
+  }
   if (!fs.existsSync(app.getPath('userData')+"/config.yml")) {
     fs.openSync(app.getPath('userData')+'/config.yml', 'w');
-    finalConfig = yaml.safeLoad(fs.readFileSync(__dirname + '/config/config.yml', 'utf8'));
+    let finalConfig = yaml.safeLoad(fs.readFileSync(platform + '/config/config.yml', 'utf8'));
+    fs.writeFileSync(app.getPath('userData')+'/config.yml', yaml.safeDump(finalConfig), function(err) {
+      if (err) return err;
+    });
+    return;
   }
   else {
-    finalConfig = yaml.safeLoad(fs.readFileSync(app.getPath('userData')+'/config.yml', 'utf-8'));
+    let finalConfig = yaml.safeLoad(fs.readFileSync(app.getPath('userData')+'/config.yml', 'utf-8'));
     let finalConfigKeys = Object.keys(finalConfig);
-    let config = yaml.safeLoad(fs.readFileSync(__dirname + '/config/config.yml', 'utf8'));
+    let config = yaml.safeLoad(fs.readFileSync(platform + '/config/config.yml', 'utf8'));
     for (let i in config) {
       if (!finalConfigKeys.includes(i.toString())) {
         finalConfig[i.toString()] = config[i.toString()];
       }
     }
+    fs.writeFileSync(app.getPath('userData')+'/config.yml', yaml.safeDump(finalConfig), function(err) {
+      if (err) return err;
+    });
+    return;
   }
-  fs.writeFileSync(app.getPath('userData')+'/config.yml', yaml.safeDump(finalConfig), function(err) {
-    if (err) return err;
-  });
 }
 
 function loadConfig() {
