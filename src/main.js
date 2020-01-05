@@ -24,8 +24,10 @@ Vue.use(VueRouter);
 
 window.sideOpen = false;
 
+const config = require('electron').remote.getGlobal('config');
+
 const i18n = new VueI18n({
-    locale: 'el',
+    locale: config.language,
     messages,
 });
 

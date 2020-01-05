@@ -14,7 +14,9 @@
             <ErrorPopup ref="error"/>
         </div>
         <Settings v-if="showSet"/>
-        <button class="btn btn-dark setbut" v-on:click="changeSet">{{$t("message.adminBarSettings")}}</button>
+        <button class="btn btn-light setbut" v-on:click="changeSet">
+            <i class="fas fa-sliders-h"></i> {{$t("message.adminBarSettings")}}
+        </button>
     </div>
 </template>
 

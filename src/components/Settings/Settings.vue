@@ -10,6 +10,7 @@
                     <SimpleFormGroup label="Background color" v-model="form.background_color" :model-data="form.background_color" />
                     <SimpleFormGroup label="NavBar Background color" v-model="form.navbar_background_color" :model-data="form.navbar_background_color"/>
                     <SimpleFormGroup label="NavBar color" v-model="form.navbar_color" :model-data="form.navbar_color"/>
+                    <SimpleFormGroup label="Language" v-model="form.language" :model-data="form.language"/>
                     <button type="submit" class="btn btn-primary float-right mb-4">{{$t("message.settingsSave")}}</button>
                 </form>
             </div>
@@ -37,7 +38,8 @@
                     secondary_logo_url: config.secondary_logo_url,
                     background_color: config.background_color,
                     navbar_background_color: config.navbar_background_color,
-                    navbar_color: config.navbar_color
+                    navbar_color: config.navbar_color,
+                    language: config.language
                 }
             }
         },
