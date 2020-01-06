@@ -10,9 +10,9 @@ The administration tool for [Moniteur](https://github.com/aueb-cslabs/moniteur).
 
 > Still WIP, but there is a working beta!
 
-![](https://imgur.com/DpLgARW)
+![](https://imgur.com/DpLgARW.png)
 
-![](https://imgur.com/kckzf5f)
+![](https://imgur.com/kckzf5f.png)
 
 ---
 
@@ -53,31 +53,31 @@ Examples:
 
 > General Announcement
 
-![](https://imgur.com/cxKmagS)
+![](https://imgur.com/cxKmagS.png)
 
 > Room Announcement
 
-![](https://imgur.com/G7QTCxV)
+![](https://imgur.com/G7QTCxV.png)
 
 > General Comment
 
-![](https://imgur.com/tnfzS06)
+![](https://imgur.com/tnfzS06.png)
 
 > User Management
 
-![](https://imgur.com/FkDfoHJ)
+![](https://imgur.com/FkDfoHJ.png)
 
 > Academic Calendar
 
-![](https://imgur.com/H7vXP4P)
+![](https://imgur.com/H7vXP4P.png)
 
 > Unscheduled Lessons
 
-![](https://imgur.com/IclfmaG)
+![](https://imgur.com/IclfmaG.png)
 
 > Settings
 
-![](https://imgur.com/GMEHlng)
+![](https://imgur.com/GMEHlng.png)
 
 ---
 
