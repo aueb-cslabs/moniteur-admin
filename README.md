@@ -18,7 +18,7 @@ The administration tool for [Moniteur](https://github.com/aueb-cslabs/moniteur).
 
 ## Contents
 
-- [Technologies](#techonologies)
+- [Technologies](#technologies)
 - [Building](#building)
 - [Download](#download)
 - [Features](#features)
@@ -27,9 +27,21 @@ The administration tool for [Moniteur](https://github.com/aueb-cslabs/moniteur).
 
 ---
 
-## Techonologies
+## Technologies
 
-Moniteur Administration is an application written in [Vue.js](https://vuejs.org/) and [electron](https://electronjs.org/). The application runs on Windows, Linux & MacOS.
+Moniteur Administration is an application written in [Vue.js](https://vuejs.org/) and [electron](https://electronjs.org/). The application runs on Windows, Linux.
+
+## Building
+
+### Windows
+
+     - Navigate to the downloaded repo
+     - npm install
+     - npm run build:win
+
+### Linux
+
+     - make .build-admin-linux
 
 ## Download
 
@@ -83,7 +95,7 @@ Examples:
 
 ## Team
 
-Moniteur was created for the needs of AUEB's Computer Science Laboratories (CSLab).
+Moniteur & Moniteur Administration was created for the needs of AUEB's Computer Science Laboratories (CSLab).
 
 The development of the project was conducted by the [Moniteur Team](https://github.com/orgs/aueb-cslabs/teams/moniteur).
 
