@@ -7,7 +7,7 @@
                     :form="form"
                     :msg="form.msg"
                     :end="form.end"/>
-            <button type="submit" class="btn btn-primary">{{$t("message.adminAnnSend")}}</button>
+            <button type="submit" class="btn btn-primary" v-on:click="send">{{$t("message.adminAnnSend")}}</button>
             <div class="mt-5" v-if="this.comment != null">
                 <ShowAnnouncement
                         :type="this.$t('message.adminCommCurrent')"
