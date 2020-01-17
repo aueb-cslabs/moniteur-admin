@@ -28,7 +28,7 @@
     "electron-updater": "^4.2.0",
     "fontawesome": "^5.6.3",
     "js-yaml": "^3.13.1",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "sass-loader": "^8.0.0",
     "traverse": "^0.6.6",
     "vue": "^2.6.10",
