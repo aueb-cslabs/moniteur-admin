@@ -21,6 +21,7 @@ The administration tool for [Moniteur](https://github.com/aueb-cslabs/moniteur).
 - [Technologies](#technologies)
 - [Building](#building)
 - [Download](#download)
+- [Platforms](#platforms)
 - [Features](#features)
 - [Team](#team)
 - [License](#license)
@@ -46,6 +47,14 @@ Moniteur Administration is an application written in [Vue.js](https://vuejs.org/
 ## Download
 
 Head over to [releases](https://github.com/aueb-cslabs/moniteur-admin/releases) to get the latest version!
+
+## Platforms
+Moniteur Admin is supported on the following platforms:
+
+- Windows (Installer, Portable)
+- Linux (AppImage)
+
+##### Warning! Auto updates only works on AppImage and Installer variants
 
 ---
 
