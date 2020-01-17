@@ -9,6 +9,9 @@ module.exports = {
                 "nsis": {
                     "artifactName": "moniteur-admin-Setup-v${version}.${ext}",
                 },
+                "portable": {
+                    "artifactName": "moniteur-admin-v${version}.${ext}",
+                },
                 "linux": {
                     "target": "AppImage",
                     "artifactName": "moniteur-admin-v${version}.${ext}"
