@@ -6,6 +6,9 @@ module.exports = {
                 // options placed here will be merged with default configuration and passed to electron-builder
                 "appId": "org.aueb.moniteur-admin",
                 "productName": "Moniteur Admin",
+                "win": {
+                    "target": ['nsis', 'portable'],
+                },
                 "nsis": {
                     "artifactName": "moniteur-admin-Setup-v${version}.${ext}",
                 },
