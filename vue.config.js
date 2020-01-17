@@ -16,9 +16,6 @@ module.exports = {
                     "target": "AppImage",
                     "artifactName": "moniteur-admin-v${version}.${ext}"
                 },
-                "dmg": {
-                    "artifactName": "moniteur-admin-Setup-v${version}.${ext}",
-                },
                 "extraFiles": [
                     {
                         "from": "config/config.yml",
