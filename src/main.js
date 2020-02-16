@@ -9,7 +9,6 @@ import authToken from './auth';
 import messages from './translations';
 import AdminAnnouncement from "./components/AdminAnnouncement/AdminAnnouncement";
 import AdminRoomAnnouncement from "./components/AdminRoomAnnouncement/AdminRoomAnnouncement";
-import AdminComment from "./components/AdminComment/AdminComment";
 import UserManagement from "./components/UserManagement/UserManagement";
 import AcademicCalendar from "./components/AcademicCalendar/AcademicCalendar";
 import UnscheduledLessons from "./components/UnscheduledLessons/UnscheduledLessons";
@@ -35,7 +34,6 @@ const routes = [
     { path: '/', component: Home },
     { path: '/announcement', component: AdminAnnouncement },
     { path: '/roomAnnouncement', component: AdminRoomAnnouncement },
-    { path: '/comment', component: AdminComment },
     { path: '/users', component: UserManagement },
     { path: '/calendar', component: AcademicCalendar },
     { path: '/unscheduled', component: UnscheduledLessons },
