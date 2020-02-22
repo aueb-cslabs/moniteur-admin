@@ -20,11 +20,18 @@
                     </div>
                 </div>
                 <div class="row pt-3">
-                    <div class="col col-lg-6">
+                    <div class="col col-lg-5">
                         <b-form-input type="datetime-local" v-model="start" v-bind:placeholder="this.$t('message.ecStart')"></b-form-input>
                     </div>
-                    <div class="col col-lg-6">
+                    <div class="col col-lg-5">
                         <b-form-input type="datetime-local" v-model="end" v-bind:placeholder="this.$t('message.ecEnd')"></b-form-input>
+                    </div>
+                    <div class="col col-lg-2">
+                        <multiselect v-model="isOverrideExam" v-bind:placeholder="this.$t('message.ecIsExam')"
+                                     :close-on-select="false" :options="isExamsOptions" :multiple="false"
+                                     v-bind:select-label="this.$t('message.ecSelect')" v-bind:deselect-label="this.$t('message.ecDeselect')">
+                            <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+                        </multiselect>
                     </div>
                 </div>
                 <div class="row pt-3">
@@ -65,6 +72,7 @@
         
         created() {
             this.loadRooms();
+            this.loadExamsOptions();
             this.fetchUnscheduled();
         },
 
@@ -75,6 +83,7 @@
                 start: '',
                 end: '',
                 date: '',
+                isOverrideExam: null,
                 roomOptions: [],
                 room: '',
                 unscheduledLessons: [],
@@ -85,6 +94,7 @@
                     { key: 'start', label: this.$t('message.ecStart'), formatter: "transformTimestamp" },
                     { key: 'end', label: this.$t('message.ecEnd'), formatter: "transformTimestamp" },
                     { key: 'room', label: this.$t('message.ecSelectRooms')},
+                    { key: 'isExam', label: this.$t('message.ecIsExam')},
                 ],
                 exam: {
                     title: '',
@@ -96,7 +106,8 @@
                     semester: 0,
                     department: '',
                     extraDepartments: []
-                }
+                },
+                isExamsOptions: []
             }
         },
 
@@ -108,6 +119,7 @@
                     start : this.start,
                     end : this.end,
                     rooms : this.room,
+                    isExam : this.isOverrideExam === this.$t('message.optionYes')
                 };
                 this.unscheduledLessons.push(newExam);
                 axios({
@@ -122,7 +134,8 @@
                         start: new Date(this.start)/1000,
                         end: new Date(this.end)/1000,
                         title: this.title,
-                        host: this.host
+                        host: this.host,
+                        isExam : this.isOverrideExam === this.$t('message.optionYes')
                     }
                 }).then(() => {
                     this.clearForm();
@@ -136,6 +149,7 @@
                 this.start = '';
                 this.end = '';
                 this.room = '';
+                this.isExamsOptions = null;
             },
 
             checkEntry: function (e) {
@@ -182,6 +196,11 @@
                 });
             },
 
+            loadExamsOptions: function() {
+                this.isExamsOptions.push(this.$t('message.optionYes'));
+                this.isExamsOptions.push(this.$t('message.optionNo'));
+            },
+
             fetchUnscheduled: function () {
                 axios({
                     method: 'get',
@@ -220,6 +239,7 @@
                             end: this.selectedRow[0].end,
                             title: this.selectedRow[0].title,
                             host: this.selectedRow[0].host,
+                            isExam: this.selectedRow[0].isExam,
                         }
                     }).then(() => {
                         this.fetchUnscheduled();

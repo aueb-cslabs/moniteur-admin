@@ -102,7 +102,10 @@ export default {
             ecAddLesson: "Add Lesson",
             Welcome: "Welcome to Moniteur Administration!",
             WelcomeSidebar: "Open the sidebar to select a function!",
-            adminHome: "Home"
+            adminHome: "Home",
+            optionYes: "Yes",
+            optionNo: "No",
+            ecIsExam: "Exam"
         }
     },
     el: {
@@ -208,7 +211,10 @@ export default {
             ecAddLesson: "Προσθήκη Μαθήματος",
             Welcome: "Καλώς ήλθατε στην διαχείριση του Moniteur!",
             WelcomeSidebar: "Ανοίχτε το sidebar για να επιλέξετε λειτουργία!",
-            adminHome: "Home"
+            adminHome: "Home",
+            optionYes: "Ναι",
+            optionNo: "Όχι",
+            ecIsExam: "Εξέταση"
         }
     }
 };
