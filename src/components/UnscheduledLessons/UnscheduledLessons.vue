@@ -20,18 +20,16 @@
                     </div>
                 </div>
                 <div class="row pt-3">
-                    <div class="col col-lg-5">
+                    <div class="col col-lg-6">
                         <b-form-input type="datetime-local" v-model="start" v-bind:placeholder="this.$t('message.ecStart')"></b-form-input>
                     </div>
-                    <div class="col col-lg-5">
+                    <div class="col col-lg-6">
                         <b-form-input type="datetime-local" v-model="end" v-bind:placeholder="this.$t('message.ecEnd')"></b-form-input>
                     </div>
-                    <div class="col col-lg-2">
-                        <multiselect v-model="isOverrideExam" v-bind:placeholder="this.$t('message.ecIsExam')"
-                                     :close-on-select="false" :options="isExamsOptions" :multiple="false"
-                                     v-bind:select-label="this.$t('message.ecSelect')" v-bind:deselect-label="this.$t('message.ecDeselect')">
-                            <span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
-                        </multiselect>
+                </div>
+                <div class="row pt-3">
+                    <div class="col">
+                        <b-form-checkbox v-model="isOverrideExam" v-bind:value="true" v-bind:unchecked-value="false">{{$t('message.ecIsExam')}}</b-form-checkbox>
                     </div>
                 </div>
                 <div class="row pt-3">
@@ -83,7 +81,7 @@
                 start: '',
                 end: '',
                 date: '',
-                isOverrideExam: null,
+                isOverrideExam: false,
                 roomOptions: [],
                 room: '',
                 unscheduledLessons: [],
@@ -119,7 +117,7 @@
                     start : this.start,
                     end : this.end,
                     rooms : this.room,
-                    isExam : this.isOverrideExam === this.$t('message.optionYes')
+                    isExam : this.isOverrideExam
                 };
                 this.unscheduledLessons.push(newExam);
                 axios({
@@ -135,7 +133,7 @@
                         end: new Date(this.end)/1000,
                         title: this.title,
                         host: this.host,
-                        isExam : this.isOverrideExam === this.$t('message.optionYes')
+                        isExam : this.isOverrideExam
                     }
                 }).then(() => {
                     this.clearForm();
@@ -149,7 +147,7 @@
                 this.start = '';
                 this.end = '';
                 this.room = '';
-                this.isExamsOptions = null;
+                this.isExamsOptions = false;
             },
 
             checkEntry: function (e) {

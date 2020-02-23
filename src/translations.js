@@ -105,7 +105,7 @@ export default {
             adminHome: "Home",
             optionYes: "Yes",
             optionNo: "No",
-            ecIsExam: "Exam"
+            ecIsExam: "Is Exam?"
         }
     },
     el: {
@@ -214,7 +214,7 @@ export default {
             adminHome: "Home",
             optionYes: "Ναι",
             optionNo: "Όχι",
-            ecIsExam: "Εξέταση"
+            ecIsExam: "Είναι Εξέταση?"
         }
     }
 };
