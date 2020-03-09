@@ -47,7 +47,7 @@
     "electron": "^7.1.11",
     "electron-builder": "^22.3.2",
     "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
+    "eslint-plugin-vue": "^6.2.2",
     "vue-cli-plugin-electron-builder": "^1.4.4",
     "vue-template-compiler": "^2.6.10"
   },
