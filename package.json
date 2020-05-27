@@ -42,7 +42,7 @@
     "@fortawesome/fontawesome-free": "^5.12.1",
     "@vue/cli-plugin-babel": "^4.1.2",
     "@vue/cli-plugin-eslint": "^4.1.2",
-    "@vue/cli-service": "^4.1.2",
+    "@vue/cli-service": "^4.4.1",
     "babel-eslint": "^10.0.1",
     "electron": "^7.1.11",
     "electron-builder": "^22.3.2",
