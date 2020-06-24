@@ -26,6 +26,9 @@ yarn-error.log*
 node_modules
 /dist
 
+# Electron dist
+/dist_electron
+
 # Github OAuth token
 token
 
