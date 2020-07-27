@@ -32,7 +32,7 @@
     "sass-loader": "^8.0.2",
     "traverse": "^0.6.6",
     "vue": "^2.6.10",
-    "vue-cookies": "^1.7.0",
+    "vue-cookies": "^1.7.3",
     "vue-fontawesome": "0.0.2",
     "vue-i18n": "^8.18.2",
     "vue-multiselect": "^2.1.6",
