@@ -45,7 +45,7 @@
     "@vue/cli-service": "^4.4.5",
     "babel-eslint": "^10.0.1",
     "electron": "^9.1.1",
-    "electron-builder": "^22.7.0",
+    "electron-builder": "^22.10.5",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^6.2.2",
     "vue-cli-plugin-electron-builder": "^1.4.4",
